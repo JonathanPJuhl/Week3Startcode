@@ -41,7 +41,7 @@ public class FacadeExampleTest {
         try {
             em.getTransaction().begin();
             em.createNamedQuery("Movie.deleteAllRows").executeUpdate();
-            String[] actor = {"Peter","pan", "Robin", "Williams"};
+            String actor = "Peter Pan, Robin Williams, Shrek";
             em.persist(new Movie(1997, "Tarzan", actor));
             em.persist(new Movie(2000, "Ironman", actor));
 

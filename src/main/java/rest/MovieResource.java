@@ -37,7 +37,7 @@ public class MovieResource {
         //System.out.println("--------------->"+count);
         return "{\"count\":"+count+"}";  //Done manually so no need for a DTO
     }
-    @Path("id")
+    @Path("{id}")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public String getMovieById(@PathParam("id") int id) {

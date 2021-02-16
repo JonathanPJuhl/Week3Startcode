@@ -38,21 +38,23 @@ public class MovieFacade {
         return emf.createEntityManager();
     }
     
-    public MovieDTO addMovie(MovieDTO rm){
-        Movie rme = new Movie();
+    public MovieDTO addMovie(Movie rm){
+        //Movie rme = new Movie(rm);
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            em.persist(rme);
+            em.persist(rm);
             em.getTransaction().commit();
         } finally {
             em.close();
         }
-        return new MovieDTO(rme);
+        return new MovieDTO(rm);
     }
     public MovieDTO getById(long id){
         EntityManager em = emf.createEntityManager();
-        return new MovieDTO(em.find(Movie.class, id));
+        Movie movie = em.find(Movie.class, id);
+
+        return new MovieDTO(movie);
     }
     
     //TODO Remove/Change this before use
@@ -71,6 +73,7 @@ public class MovieFacade {
         EntityManager em = emf.createEntityManager();
         TypedQuery<Movie> query = em.createQuery("SELECT m FROM Movie m", Movie.class);
         List<Movie> rms = query.getResultList();
+        System.out.println(rms.size());
         return MovieDTO.getDtos(rms);
     }
     

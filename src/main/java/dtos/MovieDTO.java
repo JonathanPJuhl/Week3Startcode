@@ -11,22 +11,18 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
+
 public class MovieDTO {
-    @Id
-    private long id;    
+
     private int year;
     private String title;
-    private String[] actors;
+    private String actors;
 
-    public MovieDTO(int year, String title, String[] actors) {
-        this.year = year;
-        this.title = title;
-        this.actors = actors;
+
+    public MovieDTO() {
+
     }
 
-
-    
     public static List<MovieDTO> getDtos(List<Movie> rms){
         List<MovieDTO> rmdtos = new ArrayList();
         rms.forEach(rm->rmdtos.add(new MovieDTO(rm)));
@@ -35,17 +31,12 @@ public class MovieDTO {
 
 
     public MovieDTO(Movie rm) {
-        this.id = rm.getId();
+        this.actors = rm.getActors();
+        this.title = rm.getTitle();
+        this.year = rm.getYear();
        
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public int getYear() {
         return year;
@@ -63,11 +54,11 @@ public class MovieDTO {
         this.title = title;
     }
 
-    public String[] getActors() {
+    public String getActors() {
         return actors;
     }
 
-    public void setActors(String[] actors) {
+    public void setActors(String actors) {
         this.actors = actors;
     }
 

@@ -64,14 +64,14 @@ public class MovieResourceTest {
     @BeforeEach
     public void setUp() {
         EntityManager em = emf.createEntityManager();
-        
-        String[] actor = {"Peter","pan", "Robin", "Williams"};
+
+        String actor = "Peter Pan, Robin Williams, Shrek";
         
           r1 =(new Movie(1997, "Tarzan", actor));
           r2 = (new Movie(2000, "Ironman", actor));
         try {
             em.getTransaction().begin();
-            em.createNamedQuery("RenameMe.deleteAllRows").executeUpdate();
+            em.createNamedQuery("Movie.deleteAllRows").executeUpdate();
             em.persist(r1);
             em.persist(r2);
             em.getTransaction().commit();
